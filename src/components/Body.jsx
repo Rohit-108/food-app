@@ -33,10 +33,7 @@ const Body = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const isOnline =useOnline();
     
-   // if user is not Online then return UserOffline component
-   if (!isOnline) {
-    return <UserOffline />;
-  }
+  
 
 
 
@@ -101,7 +98,10 @@ const Body = () => {
   
     // if allRestaurants is empty don't render restaurants cards
   if (!allRestaurants) return null;
-  
+   // if user is not Online then return UserOffline component
+   if (!isOnline) {
+    return <UserOffline />;
+  }
 
   return (allRestaurants?.length === 0) ?  <Shimmer /> : (
     <>
