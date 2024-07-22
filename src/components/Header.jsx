@@ -4,8 +4,13 @@ import Logo from "../assets/img/Logo.png";
 
 import { Link } from "react-router-dom";
 
+import useOnline from "./hooks/useOnline";
+
 const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const isOnline  = useOnline();
+  
+
   return (
     <div className="header">
       <Link to="/">
@@ -25,6 +30,7 @@ const Header = () => {
           <li>Cart</li>
         </ul>
       </div>
+      <h1>{isOnline? ''  :'' }</h1>
       {isLoggedIn ? (
         <button onClick={() => setIsLoggedIn(false)}>Logout</button>
       ) : (

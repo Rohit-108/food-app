@@ -3,6 +3,9 @@ import RestrauntCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 
+import  useOnline from "./hooks/useOnline"
+import UserOffline from "./UserOffline";
+
 import { FOODFIRE_API_URL } from "../constant";
 
 
@@ -22,11 +25,19 @@ function filterData(searchInput, restaurants) {
 // Body Component for body section: It contain all restaurant cards
 const Body = () => {
   // useState: To create a state variable, searchText, allRestaurants and filteredRestaurants is local state variable
+  
 
   const [allRestaurants, setAllRestaurants]= useState("")
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [searchInput, setSearchInput] = useState([])
   const [errorMessage, setErrorMessage] = useState("");
+  const isOnline =useOnline();
+    
+   // if user is not Online then return UserOffline component
+   if (!isOnline) {
+    return <UserOffline />;
+  }
+
 
 
     // use useEffect for one time call getRestaurants using empty dependency array
@@ -35,7 +46,7 @@ const Body = () => {
   }, []);
 
  // async function getRestaurant to fetch Swiggy API data
- async function getRestaurants() {
+  async function getRestaurants() {
   // handle the error using try... catch
   try {
     const response = await fetch(FOODFIRE_API_URL);
@@ -68,6 +79,9 @@ const Body = () => {
   }
 }
 
+
+
+
  
 
     // use searchData function and set condition if data is empty show error message
@@ -86,13 +100,8 @@ const Body = () => {
     };
   
     // if allRestaurants is empty don't render restaurants cards
-    if (!allRestaurants) return null;
+  if (!allRestaurants) return null;
   
-
- 
-
-
-
 
   return (allRestaurants?.length === 0) ?  <Shimmer /> : (
     <>

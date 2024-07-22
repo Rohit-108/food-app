@@ -16,16 +16,6 @@ class About extends Component{
         console.log("parent-Constructor");
     }
     async componentDidMount() {
-
-        // best place to make an api call
-        const data= fetch("https://api.github.com/users/Rohit-108");
-
-        const json= await await data.json()
-
-        console.log("Parent-ComponentDidMount")
-
-
-
         
     }
 
@@ -38,7 +28,7 @@ class About extends Component{
            <p>This is a namste react course</p>
            <Profile name={"Rohit jumar"}/>
            </div>
-        )
+        ) 
     }
 }
 
