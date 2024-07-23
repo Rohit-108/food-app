@@ -105,18 +105,18 @@ const Body = () => {
 
   return (allRestaurants?.length === 0) ?  <Shimmer /> : (
     <>
-      <div className="search-container">
+      <div className="search-container mt-[110px] mr-auto mb-[20px] flex justify-center items-center w-[100%] h-[39.2px]">
         <input
           type="text"
-          className="search-input"
+          className="search-input w-[480px] box-border rounded-bl-[5px] rounded-tl-[5px] bg-#ffffff shadow-searchbarShadow pl-[8px] pt-[15px] pr-[8px] pb-[12px] border-solid border-[1px] border-r-0 text-textColor outline-none text-lg font-medium font-cardFont text-ellipsis"
           placeholder="Search a restaurant you want..."
           value={searchInput}
           onChange={(e) => {
-            setSearchInput(e.target.value);
+            setSearchInput(e.target.value, allRestaurants);
           }}
         />
         <button
-          className="search-btn"
+          className="search-btn rounded-br-[5px] rounded-tr-[5px] bg-darkorange shadow-btnshadow text-#ffffff py-[12px] px-[22px] ml-[-4px] cursor-pointer border-none outline-none hover:bg-darkgreen"
           onClick={() => {
             searchData(searchInput, allRestaurants);
           }}
@@ -124,12 +124,12 @@ const Body = () => {
           Search
         </button>
       </div>
-      {errorMessage && <div className="error-container">{errorMessage}</div>}
+      {errorMessage && <div className="error-container text-center text-xl my-[20px] mx-[10px]">{errorMessage}</div>}
        {/* if restaurants data is not fetched then display Shimmer UI after the fetched data display restaurants cards */}
        {allRestaurants?.length === 0 ? (
         <Shimmer />
       ) : (
-        <div className="restaurant-list">
+        <div className="restaurant-list w-auto flex flex-wrap items-center justify-center self-stretch">
       {/* We are mapping restaurants array and passing JSON array data to RestaurantCard component as props with unique key as restaurant.data.id */}
       {filteredRestaurants.map((restaurant) => {
             return (
