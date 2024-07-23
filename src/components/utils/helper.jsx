@@ -6,8 +6,8 @@ export function filterData(searchInput, restaurants) {
     return filterData;
   }
 
+  export const shimmer_card_unit = 20;
 
-
-
+export const shimmer_menu_card_unit = 10;
 
 

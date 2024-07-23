@@ -30,6 +30,7 @@ export default {
         lightblack: "rgb(23, 23, 23)",
         lightblue: "#0463ac",
         darkblue: "#070062",
+        borderColor: "rgba(40, 44, 63, 0.45)",
       },
       fontFamily: {
         cardFont: ["PT Sans", "Calibri", "sans-serif"],
