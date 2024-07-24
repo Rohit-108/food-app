@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const useRestaurantMenu = (
+const useRestaurantMenu= (
   FOODFIRE_MENU_API_URL,
   resId,
   RESTAURANT_TYPE_KEY,

@@ -1,39 +1,108 @@
-import { useState } from "react";
-
 import Logo1 from "../assets/img/Logo1.png";
+import {
+  
+  BuildingOfficeIcon,
+ 
+  HomeIcon,
+ 
+  
+  PhoneIcon,
+  ShoppingBagIcon,
+} from '@heroicons/react/24/solid';
+import { Link } from "react-router-dom"; // imported Link for client side routing
+import { useNavigate } from "react-router-dom";
+import useOnline from "./hooks/useOnline";
+import useAuth from "./hooks/useAuth";
+import useLocalStorage from "./hooks/useLocalStorage";
+import { useEffect } from "react";
 
-import { Link } from "react-router-dom";
+
+const Title = () => (
+  <Link to="/">
+    <img
+      className="logo"
+      src={Logo1}
+      alt="Food Villa"
+      title="Food Villa"
+    />
+  </Link>
+);
+
 
 const Header = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
+  const [getLocalStorage, , clearLocalStorage] = useLocalStorage("user");
+  const [isLoggedin, setIsLoggedin] = useAuth();
+
+  useEffect(() => {
+    if (getLocalStorage === null) {
+      setIsLoggedin(false);
+    }
+  }, [getLocalStorage]);
+
+  
+  const isOnline = useOnline();
   return (
-    <div className="header flex justify-between items-center w-[100vw] h-[80px] bg-headerBg text-lightTextColor rounded-[5px]  font-bold fixed top-0 left-0 z-[999] overflow-y-hidden shadow-navbarShadow">
-      <Link to="/">
-        <img src={Logo1} alt="food vila" className="pl-3 pt-0 pr-3 pb-4 w-[90px] h-20" />
-      </Link>
+    <div className="header">
+      <Title />
+
+      {/* if user is logged in then display userName */}
+      {isLoggedin && (
+        <div className="user-name">Hi {getLocalStorage?.userName}!</div>
+      )}
+
       <div className="nav-items">
-        <ul className=" flex mr-[30px] items-center justify-between list-none">
-          <Link to="/">
-            <li className="p-[10px] hover:bg-orange hover:rounded-[5px] hover:cursor-pointer hover:text-white  ">Home</li>
-          </Link>
-          <Link to="/about">
-            <li className="p-3 hover:bg-orange hover:rounded hover:cursor-pointer hover:text-white" >About</li>
-          </Link>
-          <Link to="/contact">
-            <li className="p-3 hover:bg-orange hover:rounded hover:cursor-pointer hover:text-white">Contact</li>
-          </Link>
-          <li className="p-3 text-lightTextColor border-none rounded-
-          [5px] bg-transparent text-inherit font-700 cursor-pointer hover:bg-orange hover:rounded hover:cursor-pointer hover:text-white">Cart</li>
+        <ul>
+          <li>
           
+            <Link to="/" className="link"> <HomeIcon className=' icon' />{' '}Home</Link>
+          </li>
+          <li>
+         
+            <Link to="/about" className="link"> <BuildingOfficeIcon className=' icon' />{' '}About</Link>
+          </li>
+
+          <li>
+          
+            <Link to="/contact" className="link"><PhoneIcon className=' icon' />{' '}Contact</Link>
+          </li>
+          <li>
+          
+            <Link to="/Cart" className="link"><ShoppingBagIcon className='icon' />{' '}Cart</Link>
+          </li>
+          <li>
+            {/* use conditional rendering for login and logout */}
+            {isLoggedin ? (
+              <button
+                className="logout-btn"
+                onClick={() => {
+                  clearLocalStorage();
+                  setIsLoggedin(false);
+                }}
+              >
+                Logout
+                <span
+                  className={isOnline ? "login-btn-green" : "login-btn-red"}
+                >
+                  {" "}
+                  ●
+                </span>
+              </button>
+            ) : (
+              <button className="login-btn" onClick={() => navigate("/login")}>
+                Login
+                <span
+                  className={isOnline ? "login-btn-green" : "login-btn-red"}
+                >
+                  {" "}
+                  ●
+                </span>
+              </button>
+            )}
+          </li>
         </ul>
       </div>
-      {isLoggedIn ? (
-        <button   className=" text-lightTextColor border-none rounded-md bg-transparent text-inherit font-bold cursor-pointer  hover:bg-orange hover:rounded hover:cursor-pointer hover:text-white" onClick={() => setIsLoggedIn(false)}>Logout</button>
-      ) : (
-        <button className="text-lightTextColor border-none rounded-[5px] bg-transparent text-inherit font-bold cursor-pointer  hover:bg-orange hover:rounded hover:cursor-pointer hover:text-white" onClick={() => setIsLoggedIn(true)}>Login</button>
-      )}
     </div>
   );
-};
-
+}
 export default Header;

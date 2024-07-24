@@ -7,8 +7,8 @@ import Error from "./components/Error";
 import Contact from "./components/Contact.jsx";
 import RestaurantMenu from "./components/RestaurantMenu.jsx";
 import Profile from "./components/Profile.jsx";
-import Login from "./components/Login.jsx";
-const App = () => {
+// import Login from "./components/Login.jsx";
+ const App = () => {
   return (
     <>
       <RouterProvider router={appRouter} />
@@ -39,12 +39,15 @@ const appRouter = createBrowserRouter([
         element: <Body />,
       },
       {
-        path: "/about",
+        path: "about",
         element: <About />,
-        children:[{
-          path:"profile",
-          element:<Profile/>,
-        }]
+        children: [
+          {
+            // nested routing
+            path: "profile",
+            element: <Profile />,
+          },
+        ],
       },
       {
         path: "/contact",
@@ -54,10 +57,10 @@ const appRouter = createBrowserRouter([
         path:"/restaurant/:resId",
         element: <RestaurantMenu />
       },
-      {
+      {/* {
         path: "login",
         element: <Login />,
-      },
+      },*/}
       
     ],
   },

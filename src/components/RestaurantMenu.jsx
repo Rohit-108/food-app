@@ -1,37 +1,48 @@
 
-import { useParams } from "react-router-dom";
-import {FOODFIRE_MENU_API_URL,
+import { useParams } from "react-router-dom"; // import useParams for read `resId`
+import {
+  FOODFIRE_MENU_API_URL,
   IMG_CDN_URL,
   ITEM_IMG_CDN_URL,
   MENU_ITEM_TYPE_KEY,
-  RESTAURANT_TYPE_KEY,} from "../constant";
+  RESTAURANT_TYPE_KEY,
+} from "../constant";
 import {MenuShimmer} from "./Shimmer";
-import useRestaurantMenu from "./hooks/UseRestaurantMenu";
-
-
-
+import useRestaurantMenu from "./hooks/UseRestaurantMenu"; // imported custom hook useResMenuData which gives restaurant Menu data from swigy api
+import useOnline from "./hooks/useOnline"; // imported custom hook useOnline which checks user is online or not
+import UserOffline from "./UserOffline"
 
 const RestaurantMenu = () => {
-  const { resId } = useParams(); // call useParams and get value of restaurant id using objzect destructuring
-  const [restaurant, menuItems] = useRestaurantMenu(FOODFIRE_MENU_API_URL,
+  const { resId } = useParams(); // call useParams and get value of restaurant id using object destructuring
+  const [restaurant, menuItems] = useRestaurantMenu(
+    FOODFIRE_MENU_API_URL,
     resId,
     RESTAURANT_TYPE_KEY,
-    MENU_ITEM_TYPE_KEY)
+    MENU_ITEM_TYPE_KEY
+  );
 
-    
-    return (!restaurant) ? <MenuShimmer /> : (
-      <div className="mt-[80px] w-[850px] mx-auto">
-      <div className="flex  flex-row justify-start items-center bg-lightblack text-lightwhitetext overflow-y-hidden">
+
+  const isOnline = useOnline();
+  
+  if (!isOnline) {
+    return <UserOffline />;
+  }
+
+  return !restaurant ? (
+    <MenuShimmer />
+  ) : (
+    <div className="restaurant-menu">
+      <div className="restaurant-summary">
         <img
-          className="w-[250px] h-[157px] rounded-[5px] m-5"
+          className="restaurant-img"
           src={IMG_CDN_URL + restaurant?.cloudinaryImageId}
           alt={restaurant?.name}
         />
-        <div className="flex flex-col justify-start mr-[20px]">
-          <h2 className="text-[40px] max-w-[540px] text-[300]">{restaurant?.name}</h2>
-          <p className="whitespace-nowrap text-inherit opacity-[0.07] text-[15px] max-w-[540px]">{restaurant?.cuisines?.join(", ")}</p>
-          <div className="flex mt-[18px] justify-start items-center text-[12px] font-[600]  mb-[10px] text-inherit ">
-            <div className="flex justify-center items-center py-[5px] px-[8px] bg-darkgreen rounded-md" style={
+        <div className="restaurant-summary-details">
+          <h2 className="restaurant-title">{restaurant?.name}</h2>
+          <p className="restaurant-tags">{restaurant?.cuisines?.join(", ")}</p>
+          <div className="restaurant-details">
+            <div className="restaurant-rating" style={
             (restaurant?.avgRating) < 4
               ? { backgroundColor: "var(--light-red)" }
               : (restaurant?.avgRating) === "--"
@@ -49,20 +60,20 @@ const RestaurantMenu = () => {
         </div>
       </div>
 
-      <div className="flex justify-center items-center">
-        <div className="mt-8 max-w-[850px]">
-          <div className="p-5">
-            <h3 className="text-lightTextColor">Recommended</h3>
-            <p className="mt-[10px] leading-[1.3] text-[rgba(940,44,63,0.45)] text-[1rem]">
+      <div className="restaurant-menu-content">
+        <div className="menu-items-container">
+          <div className="menu-title-wrap">
+            <h3 className="menu-title">Recommended</h3>
+            <p className="menu-count">
               {menuItems.length} ITEMS
             </p>
           </div>
-          <div className="flex justify-center flex-col">
+          <div className="menu-items-list">
             {menuItems.map((item) => (
-              <div className="flex flex-row justify-between p-5  border-b-[0.5px] border-borderColor" key={item?.id}>
-                <div className="flex flex-col justify-start overflow-hidden h-[auto]">
-                  <h3 className="w-[auto] text-lightTextColor">{item?.name}</h3>
-                  <p className="mt-2 text-[1rem] font-[400] text-#3e4152 w-[inherit]">
+              <div className="menu-item" key={item?.id}>
+                <div className="menu-item-details">
+                  <h3 className="item-title">{item?.name}</h3>
+                  <p className="item-cost">
                     {item?.price > 0
                       ? new Intl.NumberFormat("en-IN", {
                           style: "currency",
@@ -70,17 +81,17 @@ const RestaurantMenu = () => {
                         }).format(item?.price / 100)
                       : " "}
                   </p>
-                  <p className="mt-[14px] leading-[1.3] text-[rgba(40,44,63,0.450] w-[auto] tracking[-0.3] text-[1rem]">{item?.description}</p>
+                  <p className="item-desc">{item?.description}</p>
                 </div>
-                <div className="flex flex-col justify-center items-end w-[450px] overflow-hidden h-[auto]">
+                <div className="menu-img-wrapper">
                   {item?.imageId && (
                     <img
-                      className="h-[100px] w-[100px] rounded-[5px]"
+                      className="menu-item-img"
                       src={ITEM_IMG_CDN_URL + item?.imageId}
                       alt={item?.name}
                     />
                   )}
-                  <button className="bg-orange text-textColor  py-[6px] px-[22px] cursor-pointer outline-none border-darkorange mt-[10px] rounded-[5px] text-lg"> ADD +</button>
+                  <button className="add-btn"> ADD +</button>
                 </div>
               </div>
             ))}
@@ -88,7 +99,7 @@ const RestaurantMenu = () => {
         </div>
       </div>
     </div>
-    )
-}
+  );
+};
 
 export default RestaurantMenu;
