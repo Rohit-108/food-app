@@ -936,9 +936,9 @@ export const RESTAURANT_TYPE_KEY =
   export const Github_API_User = "https://api.github.com/users/";
   
   // Social Media Links
-  export const Linkedin_Link = "https://www.linkedin.com/in/chetannada/";
-  export const Twitter_Link = "https://twitter.com/ChetanNada";
-  export const Github_Link = "https://github.com/chetannada";
+  export const Linkedin_Link = "https://www.linkedin.com/in/rohit-sharma108/";
+  export const Twitter_Link = "https://x.com/ROHITSH5587";
+  export const Github_Link = "https://github.com/Rohit-108";
   export const Email_Link = "mailto:rohitsharma1082001@gmail.com";
   
   // Github Authorization Token
