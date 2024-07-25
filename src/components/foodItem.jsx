@@ -1,7 +1,7 @@
 import { IMG_CDN_URL } from "../constant.jsx"
 
 
-const foodItem = (name,
+const FoodItem = (name,
     description, 
     cloudinaryImageId,
     price) => {
@@ -15,4 +15,4 @@ const foodItem = (name,
 )
 
 }
-export default foodItem;
+export default FoodItem;

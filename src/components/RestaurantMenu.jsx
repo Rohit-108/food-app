@@ -28,7 +28,7 @@ const RestaurantMenu = () => {
 
 const dispatch = useDispatch();
 
-  const handleAdditem = (item) => {
+  const handleAddItem = (item) => {
     dispatch(addItem(item));
   }
 
@@ -101,7 +101,7 @@ const dispatch = useDispatch();
                       alt={item?.name}
                     />
                   )}
-                  <button className="add-btn" onClick={() => handleAdditem(item)}> ADD Item</button>
+                  <button className="add-btn" onClick={() => handleAddItem(item)}> ADD Item</button>
                 </div>
               </div>
             ))}
