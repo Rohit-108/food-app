@@ -1019,6 +1019,43 @@
   .contact-container .contact-right form button:hover {
     background-color: var(--orange);
   }
+
+  /*cart css start*/
+
+  .cart{
+   
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction: column;
+    margin: auto;
+   
+  }
+ 
+
+  .cart > button {
+    text-decoration: none;
+    background-color: var(--dark-orange);
+    color: var(--white);
+    padding: 10px 15px;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+  }
+
+  .cart  > button:hover{
+    background-color: var(--dark-green);
+    transform: scale(0.98);
+  }
+
+  .food-item{
+    width: auto; 
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
   
   /* Contact us page CSS End */
   
@@ -1129,6 +1166,8 @@
     color: var(--x-dark-orange);
   }
   
+
+
   /* footer CSS End*/
   
   /* CSS for mobile devices */

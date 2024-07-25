@@ -1,33 +1,34 @@
-import { useDispatch, useSelector } from "react-redux"
-import FoodItem from "./FoodItem"
-import { clearCart } from "../utils/cartSlice"
-
+import { useDispatch, useSelector } from "react-redux";
+import FoodItem from "./FoodItem";
+import { clearCart } from "../utils/cartSlice";
 
 const Cart = () => {
-
-  const cartItems = useSelector(store => store.cart.items)
-  // const store = useSelector((store) => store)
-
+  const cartItems = useSelector((store) => store.cart.items);
   const dispatch = useDispatch();
 
-   
-    const handleClearCart = () => {
-      dispatch(clearCart());
-    }
+  const handleClearCart = () => {
+    dispatch(clearCart());
+  };
 
-
-    return (
-    <div>
-          <h1>Cart Items - {cartItems.length}</h1>
-          <button onClick={() => handleClearCart()}> Clear Cart</button>
-          <div>
-            {cartItems.map((item) => (
-                <FoodItem key={item.id}{...item} />
-            ))}
-          </div>
+  return (
+    <>
+       <div className="cart
+    ">
+    <div className="item-count">
+    <h1>Cart Items - {cartItems.length}</h1>
+    
     </div>
-  
-  )
-}
+     
+      <div className="food-item">
+        {cartItems.map((item) => (
+          <FoodItem key={item.id} food={item} />
+        ))}
+      </div>
+      <button onClick={handleClearCart}>Clear Cart</button>
+    </div>
+    </>
+   
+  );
+};
 
-export default Cart
+export default Cart;
