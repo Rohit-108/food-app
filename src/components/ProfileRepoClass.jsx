@@ -24,9 +24,10 @@ class ProfileRepoClass extends Component {
   render() {
     const {
       userInfo: { followers, html_url },
-      repoInfo: repoList,
+      repoInfo,
     } = this.props; // accessing userInfo and repoInfo as props from parent class `ProfileClass`
-
+   
+    const repoList = Array.isArray(repoInfo) ? repoInfo : [];
     // console.log("ProfileRepoClass child render");
     return (
       <div className="profile-repo-container">

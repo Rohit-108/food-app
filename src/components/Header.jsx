@@ -15,6 +15,7 @@ import useOnline from "./hooks/useOnline";
 import useAuth from "./hooks/useAuth";
 import useLocalStorage from "./hooks/useLocalStorage";
 import { useEffect } from "react";
+import { useSelector } from "react-redux";
 
 
 const Title = () => (
@@ -33,6 +34,7 @@ const Header = () => {
   const navigate = useNavigate();
   const [getLocalStorage, , clearLocalStorage] = useLocalStorage("user");
   const [isLoggedin, setIsLoggedin] = useAuth();
+  const cartItem = useSelector(store => store.cart.items)
 
   useEffect(() => {
     if (getLocalStorage === null) {
@@ -68,7 +70,7 @@ const Header = () => {
           </li>
           <li>
           
-            <Link to="/Cart" className="link"><ShoppingBagIcon className='icon' />{' '}Cart</Link>
+            <Link to="/Cart" className="link"><ShoppingBagIcon className='icon' />{' '}Cart-{cartItem.length}</Link>
           </li>
           <li>
             {/* use conditional rendering for login and logout */}

@@ -7,6 +7,10 @@ import Error from "./components/Error";
 import Contact from "./components/Contact.jsx";
 import RestaurantMenu from "./components/RestaurantMenu.jsx";
 import Profile from "./components/Profile.jsx";
+import {Provider} from "react-redux";
+import store from "./utils/store.jsx";
+import Cart from "./components/Cart.jsx"
+
 // import Login from "./components/Login.jsx";
  const App = () => {
   return (
@@ -19,11 +23,12 @@ import Profile from "./components/Profile.jsx";
 const AppLayout = () => {
   return (
     <>
-      <div className="app">
+    <Provider store={store}
+> <div className="app">
         <Header />
         <Outlet />
         <Footer />
-      </div>
+      </div></Provider>     
     </>
   );
 };
@@ -57,10 +62,10 @@ const appRouter = createBrowserRouter([
         path:"/restaurant/:resId",
         element: <RestaurantMenu />
       },
-      {/* {
-        path: "login",
-        element: <Login />,
-      },*/}
+      {
+        path: "/cart",
+        element: <Cart />,
+      }
       
     ],
   },

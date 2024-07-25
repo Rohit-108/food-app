@@ -11,6 +11,11 @@ import {MenuShimmer} from "./Shimmer";
 import useRestaurantMenu from "./hooks/UseRestaurantMenu"; // imported custom hook useResMenuData which gives restaurant Menu data from swigy api
 import useOnline from "./hooks/useOnline"; // imported custom hook useOnline which checks user is online or not
 import UserOffline from "./UserOffline"
+import {addItem} from "../utils/cartSlice"
+import { useDispatch } from "react-redux";
+
+
+
 
 const RestaurantMenu = () => {
   const { resId } = useParams(); // call useParams and get value of restaurant id using object destructuring
@@ -21,6 +26,11 @@ const RestaurantMenu = () => {
     MENU_ITEM_TYPE_KEY
   );
 
+const dispatch = useDispatch();
+
+  const handleAdditem = (item) => {
+    dispatch(addItem(item));
+  }
 
   const isOnline = useOnline();
   
@@ -91,7 +101,7 @@ const RestaurantMenu = () => {
                       alt={item?.name}
                     />
                   )}
-                  <button className="add-btn"> ADD +</button>
+                  <button className="add-btn" onClick={() => handleAdditem(item)}> ADD Item</button>
                 </div>
               </div>
             ))}

@@ -21,22 +21,22 @@ class Profile extends Component {
   async componentDidMount() {
     try {
       const response = await Promise.all([
-        fetch(Github_API_User + Github_UserName, options), // Fetch the data from github User API
-        fetch(Github_API_User + Github_UserName + "/repos", options), // Fetch the data from github User API for Repository
-      ]); // handle Multiple API Requests usign Promise.all()
-
+        fetch(`${Github_API_User}${Github_UserName}`, options), // Fetch the data from GitHub User API
+        fetch(`${Github_API_User}${Github_UserName}/repos`, options), // Fetch the data from GitHub Repos API
+      ]);
+  
       const resData = await Promise.all(response.map((r) => r.json()));
-
+  
       this.setState({
         userInfo: resData[0],
         repoInfo: resData[1],
       });
     } catch (error) {
-      console.error(error); // show error in console
+      console.error("Error fetching GitHub data:", error); // Log detailed error message
+      // Handle error state or display error message to user
     }
-
-    // console.log("Profile-Parent componentDidMount");
   }
+  
 
   componentDidUpdate() {
     // console.log("Profile-Parent componentDidUpdate");

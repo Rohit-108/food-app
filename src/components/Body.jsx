@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import  useOnline from "./hooks/useOnline"
 import UserOffline from "./UserOffline";
 import useResData from "./hooks/useResData";
-import { filterData } from "./utils/helper";  
+import { filterData } from "../utils/helper";  
 
 
 const Body = () => {
