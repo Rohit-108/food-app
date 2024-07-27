@@ -39,8 +39,10 @@ const Header = () => {
   useEffect(() => {
     if (getLocalStorage === null) {
       setIsLoggedin(false);
+    } else {
+      setIsLoggedin(true);
     }
-  }, [getLocalStorage]);
+  }, [getLocalStorage, setIsLoggedin]);
 
   
   const isOnline = useOnline();
