@@ -1,7 +1,7 @@
 import {  useState } from "react";
 import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
-import { FOODFIRE_API_URL } from "../constant";
+import { FOODVILLA_API_URL } from "../constant";
 import { Link } from "react-router-dom";
 
 import  useOnline from "./hooks/useOnline"
@@ -14,7 +14,7 @@ const Body = () => {
   // useState: To create a state variable, searchText, allRestaurants and filteredRestaurants is local state variable
   
 
-  const [allRestaurants, setAllRestaurant]= useResData([FOODFIRE_API_URL])
+  const [allRestaurants, setAllRestaurant]= useResData([FOODVILLA_API_URL])
   const [filteredRestaurants, setFilteredRestaurants] = useState(null);
   const [searchInput, setSearchInput] = useState("")
   const [errorMessage, setErrorMessage] = useState("");
