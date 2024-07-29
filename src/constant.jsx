@@ -929,8 +929,8 @@ export const RESTAURANT_TYPE_KEY =
   "type.googleapis.com/swiggy.presentation.food.v2.Restaurant";
 
  
-  export const Github_UserName = "Rohit Kumar";
-  export const Github_Repository_Name = "food-App";
+  export const Github_UserName = "Rohit-108";
+  export const Github_Repository_Name = "food-app";
   
   // Github API for User
   export const Github_API_User = "https://api.github.com/users/";
