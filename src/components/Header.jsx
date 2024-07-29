@@ -21,6 +21,7 @@ import { useSelector } from "react-redux";
 const Title = () => (
   <Link to="/">
     <img
+      data-testid="logo"
       className="logo"
       src={Logo1}
       alt="Food Villa"
