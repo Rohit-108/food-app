@@ -11,14 +11,14 @@ Currently, two official plugins are available:
 
     git clone "https://github.com/Rohit-108/food-app.git"
 
-Go to the project directory
+- Go to the project directory
     cd food-app
 
-install dependencies
+- install dependencies
 
  npm install
 
- start the server
+- start the server
 
  npm run dev
 
