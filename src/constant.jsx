@@ -1,14 +1,14 @@
-// Import environment variables
-const IMG_CDN_URL = `${import.meta.env.VITE_MEDIA_ASSETS_BASE_URL}fl_lossy,f_auto,q_auto,w_660/`;
-const ITEM_IMG_CDN_URL = `${import.meta.env.VITE_MEDIA_ASSETS_BASE_URL}fl_lossy,f_auto,q_auto,w_208,h_208,c_fit/`;
+// Base URL for Swiggy image CDN
+export const IMG_CDN_URL = import.meta.env.VITE_IMG_CDN_URL;
+
+// Image CDN URL for Restaurant Menu
+export const ITEM_IMG_CDN_URL = import.meta.env.VITE_ITEM_IMG_CDN_URL;
 
 // Swiggy API to get Restaurant data using foodfire server
-const FOODVILLA_API_URL = `${import.meta.env.VITE_SWIGGY_BASE_URL}dapi/restaurants/list/v5?lat=28.65200&lng=77.16630&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING`;
+export const FOODVILLA_API_URL = import.meta.env.VITE_FOODVILLA_API_URL;
 
 // Swiggy API to get Restaurant Menu data using foodfire server
-const FOODVILLA_MENU_API_URL = `${import.meta.env.VITE_FOODFIRE_BASE_URL}menu?page-type=REGULAR_MENU&complete-menu=true&lat=21.1702401&lng=72.83106070000001&&submitAction=ENTER&restaurantId=`;
-
-export { IMG_CDN_URL, ITEM_IMG_CDN_URL, FOODVILLA_API_URL, FOODVILLA_MENU_API_URL };
+export const FOODVILLA_MENU_API_URL = import.meta.env.VITE_FOODVILLA_MENU_API_URL;
 
 
 export const restrauntList= 
@@ -931,10 +931,10 @@ export const RESTAURANT_TYPE_KEY =
 
 
 // shimmer card unit
- export const shimmer_card_unit = 20;
+export const shimmer_card_unit = 20;
 
 // shimmer Menu card unit
- export const shimmer_menu_card_unit = 10;
+export const shimmer_menu_card_unit = 10;
 
  
   export const Github_UserName = "Rohit-108";
