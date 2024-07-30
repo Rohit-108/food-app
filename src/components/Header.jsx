@@ -1,4 +1,4 @@
-import Logo1 from "../assets/img/Logo1.png";
+import Logo from "../assets/img/Logo.png";
 import {
   
   BuildingOfficeIcon,
@@ -23,7 +23,7 @@ const Title = () => (
     <img
       data-testid="logo"
       className="logo"
-      src={Logo1}
+      src={Logo}
       alt="Food Villa"
       title="Food Villa"
     />
