@@ -1,3 +1,5 @@
+// src/constants.js
+
 // Base URL for Swiggy image CDN
 export const IMG_CDN_URL = import.meta.env.VITE_IMG_CDN_URL;
 
@@ -9,7 +11,6 @@ export const FOODVILLA_API_URL = import.meta.env.VITE_FOODVILLA_API_URL;
 
 // Swiggy API to get Restaurant Menu data using foodfire server
 export const FOODVILLA_MENU_API_URL = import.meta.env.VITE_FOODVILLA_MENU_API_URL;
-
 
 export const restrauntList= 
 [
